@@ -3582,6 +3582,8 @@ function upload_to_wsprnet_daemon()
                     fi
                     rm -f ${all_spots_file_list[@]}
                 else
+                    ### Write all spots to local file for future analysis
+                    cat ${UPLOADS_TMP_WSPRNET_SPOTS_TXT_FILE} >> ${WSPRDAEMON_ROOT_DIR}/all_spots.txt
                     ### Upload all the spots for one CALL_GRID in one curl transaction 
                     [[ ${verbosity} -ge 1 ]] && printf "$(date): upload_to_wsprnet_daemon() uploading ${call}_${grid} spots file ${UPLOADS_TMP_WSPRNET_SPOTS_TXT_FILE} with $(cat ${UPLOADS_TMP_WSPRNET_SPOTS_TXT_FILE} | wc -l) spots in it.\n"
                     [[ ${verbosity} -ge 3 ]] && printf "$(date): upload_to_wsprnet_daemon() uploading spot file ${UPLOADS_TMP_WSPRNET_SPOTS_TXT_FILE}:\n$(cat ${UPLOADS_TMP_WSPRNET_SPOTS_TXT_FILE})\n"
